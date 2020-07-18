@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image replacement</title>
+    <style>
+        .big-img {
+            display: flex;
+            justify-content: center; 
+        }
+        .big-img img {
+            height: 300px;
+            border: 1px solid #999;
+        }
+        .img {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .img img {
+            cursor: pointer;
+            border: 1px solid #999;
+            padding: 5px;
+            margin: 10px;
+        }
+        .active {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="big-img">
+        <img src="img/img-1.png" alt="Big image">
+    </div>
+    <div class="img">
+        <img class="active" src="img/img-1.png" alt="img 1">
+        <img src="img/img-2.png" alt="img 2">
+        <img src="img/img-3.png" alt="img 3">
+        <img src="img/img-4.png" alt="img 4">
+    </div>
+
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.img img').click(function(){
+                var all = $('.img img');
+                for(var i=0; i<all.length; i++){
+                    all[i].classList.remove('active');
+                }
+                
+                var src = $(this).attr('src');
+                $(this).addClass('active');
+                $('.big-img img').attr('src', src);
+            });
+        });
+    </script>
+</body>
+</html>
